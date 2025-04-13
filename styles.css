@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Tahoma, sans-serif;
+  text-align: center;
+  height: 100vh;
+  background-color: whitesmoke;
+  color: black;
+}
+
+main {
+  height: 90%;
+  width: 100;
+  text-align: center;
+}
+
+.weather-container {
+  min-height: 65%;
+  max-width: 50%;
+  padding: 3% 5%;
+  margin: 5% auto;
+  border: 2px solid black;
+  border-radius: 15px;
+}
+
+footer>div:nth-of-type(2) {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: black;
+  color: whitesmoke;
+  height: 2.3rem;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer>div:nth-of-type(1)>button {
+  position: absolute;
+  background-color: #333;
+  color: whitesmoke;
+  padding: 0.7rem 1.2rem;
+  border: none;
+  border-radius: 0.8rem;
+}
+
+footer>div:nth-of-type(1)>button:nth-of-type(1) {
+  bottom: 3rem;
+  left: 2rem;
+}
+
+
+footer>div:nth-of-type(1)>button:nth-of-type(2) {
+  bottom: 3rem;
+  right: 2rem;
+}

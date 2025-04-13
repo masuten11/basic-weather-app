@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Weather App</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <main>
+    <div class="weather-container">
+      <div class="inputs">
+        <input type="text" name="city" id="city">
+        <button id="searchBtn">Search</button>
+      </div>
+
+      <div>
+        <div class="basic-details">
+          <div>
+            <p id="city"></p>
+            <img src="" alt="" id="weather-icon">
+          </div>
+          <div>
+            <h2 id="temperature"></h2> <button id="celcius">°C</button> <span>|</span> <button
+              id="farenheit">°F</button>
+          </div>
+          <p id="day-time"></p>
+        </div>
+
+        <div class="advanced-info">
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+        </div>
+      </div>
+
+      <div class="forecast-grid">
+        <div id="forecast-1"></div>
+        <div id="forecast-2"></div>
+        <div id="forecast-3"></div>
+        <div id="forecast-4"></div>
+        <div id="forecast-5"></div>
+        <div id="forecast-6"></div>
+        <div id="forecast-7"></div>
+        <div id="forecast-8"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div><button>Color Scheme</button><button>Compare Cities</button></div>
+    <div>
+      <p><i>created by @masu223</i></p>
+    </div>
+  </footer>
+
+</body>
+<script src="srcipt.js"></script>
+
+</html>
