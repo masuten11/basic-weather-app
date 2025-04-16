@@ -11,16 +11,18 @@
 <body>
 
   <main>
+    <h1>Weather App</h1>
+    <div class="weather-flex">
     <div class="weather-container">
       <div class="inputs">
-        <input type="text" name="city" id="userQuery">
+        <input type="text" name="city" id="userQuery" placeholder="Enter any city here...">
         <button id="searchBtn">Search</button>
       </div>
 
-      <div>
+      <div class="details-container">
         <div class="basic-details">
           <div>
-            <p id="city">N/A</p>
+            <a href="" target="_blank"><p id="city">N/A</p></a>
             <img src="" alt="(404)" id="weather-icon">
           </div>
           <div>
@@ -49,13 +51,13 @@
       </div>
 
     </div>
+  </div>
   </main>
 
+  <div class="state-buttons"><button id="color-scheme">Toggle Theme</button><button id="compare-city">Compare Cities</button></div>
+
   <footer>
-    <div><button>Color Scheme</button><button>Compare Cities</button></div>
-    <div>
       <p><i>created by @masu223</i></p>
-    </div>
   </footer>
 
 </body>

@@ -1,4 +1,5 @@
 // Select all necessary elements
+const weatherContainer = document.querySelector(".weather-container");
 const userQuery = document.querySelector("#userQuery");
 const searchBtt = document.querySelector("#searchBtn");
 const City = document.querySelector("#city");
@@ -281,6 +282,96 @@ function convertTemp(currForm) {
 }
 
 
+// Variable to track array index count
+let i = 0;
+// Function to trigger color scheme
+const triggerColorScheme = () => {
+  const elementsToChange = {
+    body: document.querySelector("body"),
+    h1: document.querySelector("h1"),
+    weatherCon: document.querySelector(".weather-container"),
+    buttons: [searchBtt, document.querySelector("#color-scheme"), document.querySelector("#compare-city")]
+  };
+  // Colors to toggle style
+  const colors = [
+    ["linear-gradient(220deg, hsl(205, 85%, 37%),hsla(205, 85%, 50%, 0.9),hsl(40, 100%, 60%))", "hsl(205, 97%, 20%)", "hsl(205, 97%, 27%)", "hsl(205, 40%, 92%)", "whitesmoke"],
+    ["linear-gradient(220deg, hsl(145, 80%, 35%), hsla(145, 80%, 50%, 0.9), hsl(320, 100%, 60%))", "hsl(320, 92%, 21%)", "hsl(320, 90%, 28%)", "hsl(145, 90%, 93%)", "hsl(0, 0%, 6%)"],
+    ["linear-gradient(220deg, hsl(270, 90%, 35%), hsla(270, 90%, 46%, 0.9), hsl(160, 100%, 45%))", "hsl(270, 100%, 20%)", "hsl(270, 100%, 27%)", "hsl(270, 40%, 93%)", "whitesmoke"],
+    ["linear-gradient(210deg, hsl(15, 80%, 40%), hsla(15, 90%, 60%, 0.9), hsl(200, 90%, 40%))", "hsl(15, 95%, 20%)", "hsl(15, 95%, 25%)", "hsl(15, 40%, 93%)", "hsl(0, 0%, 6%)"],
+    ["linear-gradient(220deg, hsl(9, 70%, 45%), hsla(8, 60%, 52%, 0.85), hsl(45, 100%, 55%))", "hsl(6, 60%, 22%)", "hsl(6, 60%, 25%)", "hsl(10, 37%, 91%)", "hsl(0, 0%, 6%)"]
+  ];
+
+  // Condition to loop over index and make change
+  if (i <= 4) {
+    const toApply = colors[i];
+    // Apply new bg image to the body
+    elementsToChange.body.style.setProperty("background-image", `${toApply[0]}`);
+    // Apply color to the weather container
+    elementsToChange.weatherCon.style.setProperty("background-color", `${toApply[3]}`);
+    elementsToChange.weatherCon.style.setProperty("border-color", `${toApply[1]}`);
+
+    // Loop over two buttons
+    elementsToChange.buttons.forEach(button => {
+      // Change colors in different state
+      button.style.setProperty("background-color", `${toApply[1]}`);
+      button.addEventListener("mouseover", () => {
+        button.style.setProperty("background-color", `${toApply[2]}`);
+      });
+      button.addEventListener("mouseout", () => {
+        button.style.setProperty("background-color", `${toApply[1]}`);
+      });
+    });
+
+    // Check if array have got color for h1 and make change accordingly
+    if (toApply[4]) {
+      elementsToChange.h1.style.setProperty("color", `${toApply[4]}`);
+    }
+
+    // Increment the index variable to continue looping one after
+    i += 1;
+  }
+  // Condition if count gets greater than array length
+  else {
+    // Reset count and invoking the function to loop again
+    i = 0;
+    triggerColorScheme();
+  }
+}
+
+
+
+
+
+/* 
+
+// Unfinished for some necessary reasons
+//
+//Function to compare two cities
+const compareCity = () => {
+  if (!forecastGrid.classList.contains("compare-state")) {
+    // Store full html form the prev container
+    let newContainerHtml = weatherContainer.innerHTML;
+
+    // Set up new container
+    let newWeatherContainer = document.createElement("div");
+    newWeatherContainer.setAttribute("class", "new-weather-container");
+    newWeatherContainer.innerHTML = newContainerHtml;
+    newWeatherContainer.querySelector(`input[type="text"]`).setAttribute("placeholder", "Enter another city to compare...");
+
+    // Append after the prev container
+    weatherContainer.after(newWeatherContainer);
+    forecastGrid.classList.add("compare-state");
+  } else {
+    // Remove second weather-container
+    const newWeatherContainer = document.querySelector(".new-weather-container");
+    newWeatherContainer.remove();
+    forecastGrid.classList.remove("compare-state");
+  }
+}
+
+*/
+
+
 // Add Event Listeners
 //
 // Event listener to trigger API call on load
@@ -304,8 +395,8 @@ searchBtt.addEventListener("click", () => {
   updateQuery();
   userQuery.value = "";
 });
-document.addEventListener("keypress", function(e) {
-  if(document.activeElement === userQuery && e.key === "Enter") {
+document.addEventListener("keypress", function (e) {
+  if (document.activeElement === userQuery && e.key === "Enter") {
     updateQuery();
     userQuery.value = "";
   }
@@ -314,4 +405,20 @@ document.addEventListener("keypress", function(e) {
 // Event liteners to the temperature converter buttons
 fahrenheitBtt.addEventListener("click", () => convertTemp("Celsius"));
 celsiusBtt.addEventListener("click", () => convertTemp("Fahrenheit"));
+
+// Event listener to toggle theme
+document.querySelector("#color-scheme").addEventListener("click", () => triggerColorScheme());
+
+// Add search event to the city
+document.addEventListener("load", function (e) {
+  City.addEventListener("click", () => {
+    City.closest("a").setAttribute("href", `https://www.google.com/search?q=${City.textContent}`);
+  });
+});
+setInterval(() => {
+  City.addEventListener("click", () => {
+    City.closest("a").setAttribute("href", `https://www.google.com/search?q=${City.textContent}`);
+  });
+}, 10000);
+
 
